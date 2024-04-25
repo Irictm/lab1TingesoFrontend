@@ -1,0 +1,182 @@
+import { useState, useEffect } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import vehicleService from "../services/vehicle.service";
+import { Box, Button, FormControl, TextField } from "@mui/material";
+import SaveTwoToneIcon from '@mui/icons-material/SaveTwoTone';
+
+const AddEditVehicle = () => {
+    const { id } = useParams()
+    const [patentNumber, setPatentNumber] = useState("");
+    const [brand, setBrand] = useState("");
+    const [model, setModel] = useState("");
+    const [type, setType] = useState("");
+    const [fabricationDate, setFabricationDate] = useState("");
+    const [motorType, setMotorType] = useState("");
+    const [numberOfSeats, setNumberOfSeats] = useState("");
+    const [mileage, setMileage] = useState("");
+
+    const [titleVehicleForm, setTitleVehicleForm] = useState("");
+    const navigate = useNavigate();
+
+    const saveVehicle = (e) => {
+        e.preventDefault();
+
+        const vehicle = { patentNumber, brand, model, type, fabricationDate, motorType, numberOfSeats, mileage };
+        if (id) {
+            vehicleService.update(vehicle)
+            .then((response) => {
+                console.log("Vehiculo actualizando.", response.data);
+                navigate("/vehicles");
+            })
+            .catch((error) => {
+                console.log("Error actualizando el vehiculo.", error);
+            });
+        } else {
+            vehicleService.create(vehicle)
+            .then((response) => {
+                console.log("Vehiculo ha sido añadido.", response.data);
+                navigate("/vehicles");
+            })
+            .catch((error) => {
+                console.log("Error en la creacion de un nuevo vehiculo", error);
+            });
+        }
+    };
+
+    useEffect(() => {
+        if (id) {
+            setTitleVehicleForm("Editar Vehiculo");
+            vehicleService.get(id).then((vehicle) => {
+                setPatentNumber(vehicle.data.patentNumber);
+                setBrand(vehicle.data.brand);
+                setModel(vehicle.data.model);
+                setType(vehicle.data.type);
+                setFabricationDate(vehicle.data.fabricationDate);
+                setMotorType(vehicle.data.motorType);
+                setNumberOfSeats(vehicle.data.numberOfSeats);
+                setMileage(vehicle.data.mileage);
+            })
+            .catch((error) => {
+                console.log("Se ha producido un error.", error);
+              });
+        } else {
+            setTitleVehicleForm("Crear Vehiculo");
+        }
+    }, []);
+
+    return(
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          component="form"
+        >
+            <h3> {titleVehicleForm} </h3>
+            <hr />
+            <form>
+                <FormControl fullWidth>
+                    <TextField 
+                      id="patentNumber"
+                      label="Numero de Patente"
+                      value={patentNumber}
+                      variant="standard"
+                      onChange={(e) => setPatentNumber(e.target.value)}
+                      helperText="Ej. ABCL24"
+                    />
+                </FormControl>
+
+                <FormControl fullWidth>
+                    <TextField 
+                     id="brand"
+                     label="Marca"
+                     value={brand}
+                     variant="standard"
+                     onChange={(e) => setBrand(e.target.value)}
+                     helperText="Ej. Toyota"
+                    />
+                </FormControl>
+
+                <FormControl fullWidth>
+                    <TextField 
+                     id="model"
+                     label="Modelo"
+                     value={model}
+                     variant="standard"
+                     onChange={(e) => setModel(e.target.value)}
+                    />
+                </FormControl>
+
+                <FormControl fullWidth>
+                    <TextField 
+                     id="type"
+                     label="Tipo de Auto"
+                     value={type}
+                     variant="standard"
+                     onChange={(e) => setType(e.target.value)}
+                    />
+                </FormControl>
+
+                <FormControl fullWidth>
+                    <TextField 
+                     id="fabricationDate"
+                     label="Fecha de Fabricacion"
+                     type="date"
+                     value={fabricationDate}
+                     variant="standard"
+                     onChange={(e) => setFabricationDate(e.target.value)}
+                    />
+                </FormControl>
+
+                <FormControl fullWidth>
+                    <TextField 
+                     id="motorType"
+                     label="Tipo de Motor"
+                     value={motorType}
+                     variant="standard"
+                     onChange={(e) => setMotorType(e.target.value)}
+                    />
+                </FormControl>
+
+                <FormControl fullWidth>
+                    <TextField 
+                     id="numberOfSeats"
+                     label="Numero de Asientos"
+                     type="number"
+                     value={numberOfSeats}
+                     variant="standard"
+                     onChange={(e) => setNumberOfSeats(e.target.value)}
+                    />
+                </FormControl>
+
+                <FormControl fullWidth>
+                    <TextField 
+                     id="mileage"
+                     label="Kilometraje"
+                     type="number"
+                     value={mileage}
+                     variant="standard"
+                     onChange={(e) => setMileage(e.target.value)}
+                    />
+                </FormControl>
+
+                <FormControl>
+                    <br />
+                    <Button
+                      variant="contained"
+                      color="info"
+                      onClick={(e) => saveVehicle(e)}
+                      style={{ marginLeft: "0.5rem" }}
+                      startIcon={<SaveTwoToneIcon />}
+                    >
+                    Grabar
+                    </Button>
+                </FormControl>
+            </form>
+            <hr />
+            <Link to="/vehicles">Volver a la lista</Link>
+        </Box>
+    );
+};
+
+export default AddEditVehicle;
