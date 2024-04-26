@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import vehicleService from "../services/vehicle.service";
-import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, alpha } from "@mui/material";
 import AddBoxTwoToneIcon from '@mui/icons-material/AddBoxTwoTone';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
@@ -47,7 +47,8 @@ const VehicleList = () => {
     };
 
     return(
-        <TableContainer>
+        <TableContainer sx={{ bgcolor: alpha("#0080ff", 0.3) }}>
+            <br />
             <Link
               to="/vehicles/add"
               style={{textDecoration: "none", marginBottom: "1rem" }}
@@ -60,7 +61,9 @@ const VehicleList = () => {
                     Agregar Vehiculo
                 </Button>
             </Link>
-            <Table sx={{ minWidth: 650}} size="small" aria-label="a dense table">
+            <br />
+            <br />
+            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
                         <TableCell aling="left" sx={{ fontWeight: "bold" }}>

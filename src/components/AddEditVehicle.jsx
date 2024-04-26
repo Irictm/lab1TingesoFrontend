@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import vehicleService from "../services/vehicle.service";
-import { Box, Button, FormControl, TextField } from "@mui/material";
+import { Box, Button, FormControl, TextField, alpha } from "@mui/material";
 import SaveTwoToneIcon from '@mui/icons-material/SaveTwoTone';
 
 const AddEditVehicle = () => {
@@ -21,7 +21,7 @@ const AddEditVehicle = () => {
     const saveVehicle = (e) => {
         e.preventDefault();
 
-        const vehicle = { patentNumber, brand, model, type, fabricationDate, motorType, numberOfSeats, mileage };
+        const vehicle = { id, patentNumber, brand, model, type, fabricationDate, motorType, numberOfSeats, mileage };
         if (id) {
             vehicleService.update(vehicle)
             .then((response) => {
@@ -71,9 +71,9 @@ const AddEditVehicle = () => {
           alignItems="center"
           justifyContent="center"
           component="form"
+          sx={{ bgcolor: alpha("#0080ff", 0.3), pl: 3, pr: 3}}
         >
-            <h3> {titleVehicleForm} </h3>
-            <hr />
+            <h2> {titleVehicleForm} </h2>
             <form>
                 <FormControl fullWidth>
                     <TextField 
@@ -117,7 +117,7 @@ const AddEditVehicle = () => {
                     />
                 </FormControl>
 
-                <FormControl fullWidth>
+                <FormControl fullWidth sx={{ mt: 2}}>
                     <TextField 
                      id="fabricationDate"
                      label="Fecha de Fabricacion"
@@ -125,6 +125,9 @@ const AddEditVehicle = () => {
                      value={fabricationDate}
                      variant="standard"
                      onChange={(e) => setFabricationDate(e.target.value)}
+                     InputLabelProps={{
+                        shrink: true,
+                      }}
                     />
                 </FormControl>
 
@@ -173,8 +176,9 @@ const AddEditVehicle = () => {
                     </Button>
                 </FormControl>
             </form>
-            <hr />
+            <br />
             <Link to="/vehicles">Volver a la lista</Link>
+            <br />
         </Box>
     );
 };
