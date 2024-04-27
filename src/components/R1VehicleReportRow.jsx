@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import vehicleService from "../services/repair.service";
+import vehicleService from "../services/vehicle.service";
 import { TableCell, TableRow } from "@mui/material";
 
 const R1VehicleReportRow = (vehicle) => {
