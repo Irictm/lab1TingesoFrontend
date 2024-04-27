@@ -38,11 +38,11 @@ export default function Sidemenu({ open, toggleDrawer }) {
               <ListItemText primary="Reparaciones" />
             </ListItemButton>
 
-            <ListItemButton onClick={() => navigate("/reports")}>
+            <ListItemButton onClick={() => navigate("/reports/r1")}>
               <ListItemIcon>
                 <AssessmentTwoToneIcon />
               </ListItemIcon>
-              <ListItemText primary="Reportes" />
+              <ListItemText primary="Reporte 1: Vehiculos" />
             </ListItemButton>
           </List>
         </Box>

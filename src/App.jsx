@@ -5,6 +5,9 @@ import VehicleList from './components/VehicleList';
 import RepairList from './components/RepairList';
 import './App.css'
 import AddEditVehicle from './components/AddEditVehicle';
+import AddEditRepair from './components/AddEditRepair';
+import AddOperation from './components/AddOperation';
+import R1VehicleReport from './components/R1VehicleReport';
 
 function App() {
   return (
@@ -16,6 +19,10 @@ function App() {
         <Route path="/vehicles/edit/:id" element={<AddEditVehicle/>}/>
         <Route path="/vehicles" element={<VehicleList/>} />
         <Route path="/repairs" element={<RepairList/>} />
+        <Route path="/repairs/add" element={<AddEditRepair/>}/>
+        <Route path="/repairs/edit/:id" element={<AddEditRepair/>}/>
+        <Route path="/operation/add" element={<AddOperation/>} />
+        <Route path="/reports/r1" element={<R1VehicleReport/>} />
         <Route path="*" element={<NotFound/>} />
       </Routes>
     </div>

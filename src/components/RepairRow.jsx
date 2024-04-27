@@ -1,8 +1,10 @@
 import { useEffect, useState, Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import  operationService from "../services/operation.service";
+import operationService from "../services/operation.service";
+import repairService from "../services/repair.service";
 import { Button, Table, TableBody, TableCell, TableContainer, Box,
      TableHead, TableRow, alpha, IconButton, Collapse, Typography } from "@mui/material";
+import AddBoxTwoToneIcon from '@mui/icons-material/AddBoxTwoTone';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import KeyboardArrowUpTwoToneIcon from '@mui/icons-material/KeyboardArrowUpTwoTone';
@@ -23,6 +25,13 @@ const RepairRow = (repair) => {
         .catch((error) => {
             console.log("Error en la obtencion del listado de operaciones", error);
         });
+        repairService.calculate(repair.id)
+            .then((response) => {
+                console.log("Mostrando valor total calculado", response.data);
+            })
+            .catch((error) => {
+                console.log("Error en la obtencion del calculo del valor total", error);
+            });
     };
 
     useEffect(() => {
@@ -31,15 +40,29 @@ const RepairRow = (repair) => {
 
     const handleDelete = (id) => {
         console.log("Id Reparacion seleccionado: ", id);
-        const confirmDelete = window.confirm("¿Esta seguro que desea borrar este reparacion?");
+        const confirmDelete = window.confirm("¿Esta seguro que desea borrar esta reparacion?");
         if (confirmDelete) {
             repairService.remove(id)
             .then((response) => {
-                console.log("Reparacion eliminado exitosamente.", response.data);
+                console.log("Reparacion eliminada exitosamente.", response.data);
+            })
+            .catch((error) => {
+                console.log("Error en la eliminacion de la reparacion", error)
+            });
+        }
+    };
+
+    const handleDeleteOperation = (id) => {
+        console.log("Id Operacion seleccionado: ", id);
+        const confirmDeleteOp = window.confirm("¿Esta seguro que desea borrar esta operacion?");
+        if (confirmDeleteOp) {
+            operationService.remove(id)
+            .then((response) => {
+                console.log("Operacion eliminada exitosamente.", response.data);
                 init();
             })
             .catch((error) => {
-                console.log("Error en la eliminacion del reparacion", error)
+                console.log("Error en la eliminacion de la operacion", error)
             });
         }
     };
@@ -101,8 +124,20 @@ const RepairRow = (repair) => {
                             gutterBottom component="div">
                             Operations
                         </Typography>
+                        <Link
+                          to="/operation/add"
+                          style={{textDecoration: "none", marginBottom: "1rem" }}
+                        >
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              startIcon={<AddBoxTwoToneIcon />}
+                            >
+                                Agregar Operacion
+                            </Button>
+                        </Link>
                         <Table size="small"
-                            aria-label="purchases">
+                            aria-label="operations">
                             <TableHead>
                                 <TableRow>
                                     <TableCell>
@@ -117,6 +152,18 @@ const RepairRow = (repair) => {
                                         {operation.id}>
                                         <TableCell>
                                             {operation.type}
+                                        </TableCell>
+                                        <TableCell>
+                                            <Button
+                                              variant="contained"
+                                              color="error"
+                                              size="small"
+                                              onClick={() => handleDeleteOperation(operation.id)}
+                                              style={{marginLeft: "0.5rem" }}
+                                              startIcon={<DeleteTwoToneIcon />}
+                                            >
+                                            Eliminar
+                                            </Button>
                                         </TableCell>
                                     </TableRow>
                                 ))}

@@ -8,6 +8,10 @@ const create = data => {
     return httpClient.post('/api/v1/vehicle/', data);
 }
 
+const getFormulaValues = id => {
+    return httpClient.get(`/api/v1/vehicle/${id}/values`);
+}
+
 const get = id => {
     return httpClient.get(`/api/v1/vehicle/${id}`);
 }
@@ -19,4 +23,4 @@ const update = data => {
 const remove = id => {
     return httpClient.delete(`/api/v1/vehicle/${id}`);
 }
-export default { getAll, create, get, update, remove };
+export default { getAll, create, getFormulaValues, get, update, remove };
