@@ -127,7 +127,7 @@ const RepairRow = (repair) => {
                     <Box sx={{ margin: 1 }}>
                         <Typography variant="h5"
                             gutterBottom component="div">
-                            Operations
+                            Operations Auto Fix
                         </Typography>
                         <Button
                           variant="contained"
