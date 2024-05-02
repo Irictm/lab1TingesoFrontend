@@ -9,6 +9,8 @@ import AddEditRepair from './components/AddEditRepair';
 import AddOperation from './components/AddOperation';
 import R1VehicleReport from './components/R1VehicleReport';
 import BonusList from './components/BonusList';
+import AddEditBonus from './components/AddEditBonus';
+import Home from './components/Home';
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
     <div className="container">
       <Navbar></Navbar>
       <Routes>
+        <Route path="/home" element={<Home/>}/>
         <Route path="/vehicles/add" element={<AddEditVehicle/>}/>
         <Route path="/vehicles/edit/:id" element={<AddEditVehicle/>}/>
         <Route path="/vehicles" element={<VehicleList/>} />
@@ -24,6 +27,8 @@ function App() {
         <Route path="/repairs/edit/:id" element={<AddEditRepair/>}/>
         <Route path="/operation/add" element={<AddOperation/>} />
         <Route path="/bonus" element={<BonusList/>} />
+        <Route path="/bonus/add" element={<AddEditBonus/>} />
+        <Route path="/bonus/edit/:id" element={<AddEditBonus/>} />
         <Route path="/reports/r1" element={<R1VehicleReport/>} />
         <Route path="*" element={<NotFound/>} />
       </Routes>

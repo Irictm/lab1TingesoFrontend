@@ -128,11 +128,11 @@ const AddEditRepair = () => {
                 <FormControl fullWidth>
                     <TextField 
                      id="totalAmount"
+                     disabled
                      label="Costo total"
                      type="number"
                      value={totalAmount}
                      variant="standard"
-                     onChange={(e) => setTotalAmount(e.target.value)}
                     />
                 </FormControl>
 

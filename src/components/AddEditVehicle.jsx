@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import vehicleService from "../services/vehicle.service";
-import { Box, Button, FormControl, TextField, alpha } from "@mui/material";
+import { Box, Button, FormControl, TextField, alpha, MenuItem } from "@mui/material";
 import SaveTwoToneIcon from '@mui/icons-material/SaveTwoTone';
 
 const AddEditVehicle = () => {
@@ -17,6 +17,60 @@ const AddEditVehicle = () => {
 
     const [titleVehicleForm, setTitleVehicleForm] = useState("");
     const navigate = useNavigate();
+
+    const brands = [
+        {
+            value: 'Toyota'
+        },
+        {
+            value: 'Kia'
+        },
+        {
+            value: 'Honda'
+        },
+        {
+            value: 'Ford'
+        },
+        {
+            value: 'Chevrolet'
+        },
+        {
+            value: 'Hyundai'
+        }
+    ];
+
+    const types = [
+        {
+            value: 'Sedan'
+        },
+        {
+            value: 'Hatchback'
+        },
+        {
+            value: 'SUV'
+        },
+        {
+            value: 'Pickup'
+        },
+        {
+            value: 'Furgoneta'
+        }
+    ];
+
+    const motorTypes = [
+        {
+            value: 'Gasolina'
+        },
+        {
+            value: 'Diesel'
+        },
+        {
+            value: 'Hibrido'
+        },
+        {
+            value: 'Electrico'
+        }
+    ];
 
     const saveVehicle = (e) => {
         e.preventDefault();
@@ -87,14 +141,20 @@ const AddEditVehicle = () => {
                 </FormControl>
 
                 <FormControl fullWidth>
-                    <TextField 
+                <TextField
                      id="brand"
+                     select
                      label="Marca"
                      value={brand}
                      variant="standard"
                      onChange={(e) => setBrand(e.target.value)}
-                     helperText="Ej. Toyota"
-                    />
+                     >
+                        {brands.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.value}
+                          </MenuItem>
+                        ))}
+                     </TextField>
                 </FormControl>
 
                 <FormControl fullWidth>
@@ -110,11 +170,18 @@ const AddEditVehicle = () => {
                 <FormControl fullWidth>
                     <TextField 
                      id="type"
+                     select
                      label="Tipo de Auto"
                      value={type}
                      variant="standard"
                      onChange={(e) => setType(e.target.value)}
-                    />
+                     >
+                        {types.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.value}
+                          </MenuItem>
+                        ))}
+                     </TextField>
                 </FormControl>
 
                 <FormControl fullWidth sx={{ mt: 2}}>
@@ -134,11 +201,18 @@ const AddEditVehicle = () => {
                 <FormControl fullWidth>
                     <TextField 
                      id="motorType"
+                     select
                      label="Tipo de Motor"
                      value={motorType}
                      variant="standard"
                      onChange={(e) => setMotorType(e.target.value)}
-                    />
+                     >
+                        {motorTypes.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.value}
+                          </MenuItem>
+                        ))}
+                     </TextField>
                 </FormControl>
 
                 <FormControl fullWidth>
