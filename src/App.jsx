@@ -25,7 +25,7 @@ function App() {
         <Route path="/repairs" element={<RepairList/>} />
         <Route path="/repairs/add" element={<AddEditRepair/>}/>
         <Route path="/repairs/edit/:id" element={<AddEditRepair/>}/>
-        <Route path="/operation/add" element={<AddOperation/>} />
+        <Route path="/operation/add/:id" element={<AddOperation/>} />
         <Route path="/bonus" element={<BonusList/>} />
         <Route path="/bonus/add" element={<AddEditBonus/>} />
         <Route path="/bonus/edit/:id" element={<AddEditBonus/>} />

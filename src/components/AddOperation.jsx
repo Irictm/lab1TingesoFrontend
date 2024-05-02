@@ -5,6 +5,7 @@ import { Box, Button, FormControl, TextField, alpha } from "@mui/material";
 import SaveTwoToneIcon from '@mui/icons-material/SaveTwoTone';
 
 const AddOperation = () => {
+    const { id } = useParams()
     const [type, setType] = useState("");
     const [id_repair, setIdRepair] = useState("");
 
@@ -25,6 +26,7 @@ const AddOperation = () => {
     };
 
     useEffect(() => {
+        setIdRepair(id);
         setTitleOperationForm("Crear Operacion");
     }, []);
 
@@ -53,6 +55,7 @@ const AddOperation = () => {
                 <FormControl fullWidth>
                     <TextField 
                       id="id_repair"
+                      disabled
                       label="Id de la reparacion"
                       value={id_repair}
                       variant="standard"
@@ -74,7 +77,7 @@ const AddOperation = () => {
                 </FormControl>
             </form>
             <br />
-            <Link to="/operations">Volver a la lista</Link>
+            <Link to="/repairs">Volver a la lista</Link>
             <br />
         </Box>
     );

@@ -72,6 +72,11 @@ const RepairRow = (repair) => {
         navigate(`/repairs/edit/${id}`)
     };
 
+    const handleAddOperation = (id) => {
+        console.log("Id Reparacion seleccionado: ", id);
+        navigate(`/operation/add/${id}`)
+    };
+
     return(
     <Fragment>
         <TableRow key={repair.id} 
@@ -124,18 +129,14 @@ const RepairRow = (repair) => {
                             gutterBottom component="div">
                             Operations
                         </Typography>
-                        <Link
-                          to="/operation/add"
-                          style={{textDecoration: "none", marginBottom: "1rem" }}
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={() => handleAddOperation(repair.id)}
+                          startIcon={<AddBoxTwoToneIcon />}
                         >
-                            <Button
-                              variant="contained"
-                              color="primary"
-                              startIcon={<AddBoxTwoToneIcon />}
-                            >
-                                Agregar Operacion
-                            </Button>
-                        </Link>
+                            Agregar Operacion
+                        </Button>
                         <Table size="small"
                             aria-label="operations">
                             <TableHead>

@@ -33,6 +33,7 @@ const AddEditRepair = () => {
                 console.log("Error actualizando la reparacion.", error);
             });
         } else {
+            setTotalAmount(0);
             repairService.create(repair)
             .then((response) => {
                 console.log("Reparacion ha sido añadido.", response.data);
