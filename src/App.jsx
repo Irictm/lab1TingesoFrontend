@@ -8,6 +8,7 @@ import AddEditVehicle from './components/AddEditVehicle';
 import AddEditRepair from './components/AddEditRepair';
 import AddOperation from './components/AddOperation';
 import R1VehicleReport from './components/R1VehicleReport';
+import R3BrandReport from './components/R3BrandReport';
 import BonusList from './components/BonusList';
 import AddEditBonus from './components/AddEditBonus';
 import Home from './components/Home';
@@ -30,6 +31,7 @@ function App() {
         <Route path="/bonus/add" element={<AddEditBonus/>} />
         <Route path="/bonus/edit/:id" element={<AddEditBonus/>} />
         <Route path="/reports/r1" element={<R1VehicleReport/>} />
+        <Route path="/reports/r3" element={<R3BrandReport/>} />
         <Route path="*" element={<NotFound/>} />
       </Routes>
     </div>

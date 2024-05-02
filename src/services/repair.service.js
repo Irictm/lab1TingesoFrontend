@@ -12,6 +12,10 @@ const get = id => {
     return httpClient.get(`/api/v1/repair/${id}`);
 }
 
+const avgtimebrand = brand => {
+    return httpClient.get(`/api/v1/repair/avgtime/${brand}`);
+}
+
 const calculate = id => {
     return httpClient.get(`/api/v1/repair/${id}/calculate`);
 }
@@ -23,4 +27,4 @@ const update = data => {
 const remove = id => {
     return httpClient.delete(`/api/v1/repair/${id}`);
 }
-export default { getAll, create, calculate, get, update, remove };
+export default { getAll, avgtimebrand, create, calculate, get, update, remove };
