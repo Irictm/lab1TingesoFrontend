@@ -16,6 +16,10 @@ const avgtimebrand = brand => {
     return httpClient.get(`/api/v1/repair/avgtime/${brand}`);
 }
 
+const valuesR2 = typeop => {
+    return httpClient.get(`/api/v1/repair/operationtype/${typeop}`);
+}
+
 const calculate = id => {
     return httpClient.get(`/api/v1/repair/${id}/calculate`);
 }
@@ -27,4 +31,4 @@ const update = data => {
 const remove = id => {
     return httpClient.delete(`/api/v1/repair/${id}`);
 }
-export default { getAll, avgtimebrand, create, calculate, get, update, remove };
+export default { getAll, avgtimebrand, valuesR2, create, calculate, get, update, remove };
