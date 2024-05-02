@@ -6,6 +6,7 @@ import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 import DirectionsCarTwoToneIcon from '@mui/icons-material/DirectionsCarTwoTone';
 import HandymanTwoToneIcon from '@mui/icons-material/HandymanTwoTone';
 import AssessmentTwoToneIcon from '@mui/icons-material/AssessmentTwoTone';
+import LocalAtmTwoToneIcon from '@mui/icons-material/LocalAtmTwoTone';
 
 export default function Sidemenu({ open, toggleDrawer }) {
     const navigate = useNavigate();
@@ -36,6 +37,13 @@ export default function Sidemenu({ open, toggleDrawer }) {
                 <HandymanTwoToneIcon />
               </ListItemIcon>
               <ListItemText primary="Reparaciones" />
+            </ListItemButton>
+
+            <ListItemButton onClick={() => navigate("/bonus")}>
+              <ListItemIcon>
+                <LocalAtmTwoToneIcon />
+              </ListItemIcon>
+              <ListItemText primary="Bonus" />
             </ListItemButton>
 
             <ListItemButton onClick={() => navigate("/reports/r1")}>

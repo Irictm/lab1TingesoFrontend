@@ -8,6 +8,7 @@ import AddEditVehicle from './components/AddEditVehicle';
 import AddEditRepair from './components/AddEditRepair';
 import AddOperation from './components/AddOperation';
 import R1VehicleReport from './components/R1VehicleReport';
+import BonusList from './components/BonusList';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/repairs/add" element={<AddEditRepair/>}/>
         <Route path="/repairs/edit/:id" element={<AddEditRepair/>}/>
         <Route path="/operation/add" element={<AddOperation/>} />
+        <Route path="/bonus" element={<BonusList/>} />
         <Route path="/reports/r1" element={<R1VehicleReport/>} />
         <Route path="*" element={<NotFound/>} />
       </Routes>
